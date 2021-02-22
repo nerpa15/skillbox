@@ -1,10 +1,12 @@
 public class Cat {
+    private static int countCat = 0;
     private double originWeight;
     private double weight;
 
     private double minWeight;
     private double maxWeight;
     private double weightFood;
+    private boolean isLive;
 
 
     public Cat() {
@@ -13,22 +15,36 @@ public class Cat {
         minWeight = 1000.0;
         maxWeight = 9000.0;
         weightFood = 0;
-
+        countCat = countCat + 1;
+        isLive = true;
     }
 
     public void meow() {
-        weight = weight - 1;
-        System.out.println("Meow");
+        if (getIsLive()) {
+            weight = weight - 1;
+            System.out.println("Meow");
+        } else {
+            System.out.println("Кошка Deid");
+        }
     }
 
+
     public void feed(Double amount) {
-        weight = weight + amount;
-        weightFood = weightFood + amount;
+        if (getIsLive()) {
+            weight = weight + amount;
+            weightFood = weightFood + amount;
+        } else {
+            System.out.println("Кошка Deid");
+        }
     }
 
     public void drink(Double amount) {
-        weight = weight + amount;
-        weightFood = weightFood + amount;
+        if (getIsLive()) {
+            weight = weight + amount;
+            weightFood = weightFood + amount;
+        } else {
+            System.out.println("Кошка Deid");
+        }
     }
 
     public Double getWeight() {
@@ -39,30 +55,45 @@ public class Cat {
         return weightFood;
     }
 
+    public static int getCountCat() {
+        return countCat;
+    }
+
     public void pee() {
-        weight = weight - 0.1;
-        System.out.println("Что-то очень личное");
+        if (getIsLive()) {
+            weight = weight - 0.1;
+            System.out.println("Что-то очень личное");
+        } else {
+            System.out.println("Кошка Deid");
+        }
 
     }
 
+    public boolean getIsLive() {
+        if (isLive && ((weight < minWeight) || (weight > maxWeight))) {
+            isLive = false;
+            countCat = countCat - 1;
+        }
+        return isLive;
+    }
+
     public String getStatus() {
-        if (weight < minWeight) {
-            return "Dead";
-        } else if (weight > maxWeight) {
-            return "Exploded";
-        } else if (weight > originWeight) {
-            return "Sleeping";
+        if (getIsLive()) {
+            if (weight > originWeight) {
+                return "Sleeping";
+            } else {
+                return "Playing";
+            }
         } else {
-            return "Playing";
+            return "Dead";
         }
     }
 
     public void print() {
         System.out.println("Cat{" +
                 "originWeight=" + originWeight +
-                ", weight=" + weight +
-                '}');
-
+                ", weight=" + weight + '}');
+        System.out.println("Всего кошек " + getCountCat());
     }
 
 }

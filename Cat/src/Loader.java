@@ -2,10 +2,26 @@ public class Loader {
     public static void main(String[] args) {
         Cat cat1 = new Cat();
         cat1.print();
-        cat1.feed(150.00 );
-        cat1.feed(100.00 );
-        cat1.pee();
-        cat1.pee();
-        System.out.println("Кошка съела "+cat1.getWeightFood());
+
+        Cat cat2 = new Cat();
+        cat2.print();
+
+        Cat cat3 = new Cat();
+        cat3.print();
+
+        Cat cat4 = new Cat();
+        cat4.print();
+
+        Cat cat5 = new Cat();
+        cat5.print();
+
+        System.out.println(cat3.getStatus());
+        while (cat3.getIsLive()){
+            cat3.feed(1000.0);
+        }
+        System.out.println(cat3.getStatus());
+        cat3.print();
+        cat3.feed(1.0);
+        cat3.meow();
+        }
     }
-}
