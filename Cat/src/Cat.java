@@ -106,14 +106,44 @@ public class Cat {
         }
     }
 
+    public Cat(double weight, Color color) {
+        this.weight = weight;
+        this.color = color;
+        originWeight = weight;
+        weightFood = 0;
+        countCat = countCat + 1;
+        isLive = true;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public void setLive(boolean live) {
+        if ((isLive)&&(!live)) {
+            countCat = countCat - 1;
+        }
+        isLive = live;
+    }
+
+    public Cat copyCat() {
+        Cat cat = new Cat();
+        cat.setWeight(this.weight);
+        cat.setColor(this.color);
+        cat.originWeight = cat.getWeight();
+        cat.weightFood = 0;
+        cat.setLive(this.isAlive());
+        return cat;
+    }
+
     public void print() {
         System.out.println("Cat{" +
-                "Кошка жива? "+ isAlive() +
+                "Кошка жива? " + isAlive() +
                 " originWeight=" + originWeight +
                 ", weight=" + weight +
                 ", color=" + color.toString() +
                 '}');
-        System.out.println("Всего кошек " + getCountCat());
+        System.out.println("Всего живых кошек " + getCountCat());
     }
 
 }

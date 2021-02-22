@@ -1,14 +1,14 @@
 public class Loader {
     public static void main(String[] args) {
-       Cat kitten1 = getKitten();
-        kitten1.setColor(Color.WHITE);
-        kitten1.print();
-        Cat kitten2 = getKitten();
-        kitten2.setColor(Color.BLACK);
-        kitten2.print();
-        Cat kitten3 = getKitten();
-        kitten3.setColor(Color.RED);
-        kitten3.print();
+        Cat cat1 = new Cat();
+        Cat cat2 = new Cat(cat1.getWeight(), cat1.getColor());
+        cat1.print();
+        cat2.print();
+        cat2.setWeight(5.0);
+        cat2.setLive(false);
+        cat2.print();
+        Cat cat3 = cat2.copyCat();
+        cat3.print();
     }
 
     private static Cat getKitten() {
