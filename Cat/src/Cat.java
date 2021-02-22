@@ -19,6 +19,14 @@ public class Cat {
         color = Color.BLACK;
     }
 
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     public Cat(Double weight) {
         this.weight = weight;
         originWeight = weight;
@@ -29,7 +37,7 @@ public class Cat {
     }
 
     public void meow() {
-        if (getIsLive()) {
+        if (isAlive()) {
             weight = weight - 1;
             System.out.println("Meow");
         } else {
@@ -39,7 +47,7 @@ public class Cat {
 
 
     public void feed(Double amount) {
-        if (getIsLive()) {
+        if (isAlive()) {
             weight = weight + amount;
             weightFood = weightFood + amount;
         } else {
@@ -48,7 +56,7 @@ public class Cat {
     }
 
     public void drink(Double amount) {
-        if (getIsLive()) {
+        if (isAlive()) {
             weight = weight + amount;
             weightFood = weightFood + amount;
         } else {
@@ -69,7 +77,7 @@ public class Cat {
     }
 
     public void pee() {
-        if (getIsLive()) {
+        if (isAlive()) {
             weight = weight - 0.1;
             System.out.println("Что-то очень личное");
         } else {
@@ -78,7 +86,7 @@ public class Cat {
 
     }
 
-    public boolean getIsLive() {
+    public boolean isAlive() {
         if (isLive && ((weight < MIN_WEIGHT) || (weight > MAX_WEIGHT))) {
             isLive = false;
             countCat = countCat - 1;
@@ -87,7 +95,7 @@ public class Cat {
     }
 
     public String getStatus() {
-        if (getIsLive()) {
+        if (isAlive()) {
             if (weight > originWeight) {
                 return "Sleeping";
             } else {
@@ -100,7 +108,8 @@ public class Cat {
 
     public void print() {
         System.out.println("Cat{" +
-                "originWeight=" + originWeight +
+                "Кошка жива? "+ isAlive() +
+                " originWeight=" + originWeight +
                 ", weight=" + weight +
                 ", color=" + color.toString() +
                 '}');
