@@ -10,14 +10,22 @@ public class Cat {
     private Color color;
 
 
-
-    public Cat(Color color) {
+    public Cat() {
         weight = 1500.0 + 3000.0 * Math.random();
         originWeight = weight;
         weightFood = 0;
         countCat = countCat + 1;
         isLive = true;
-        this.color = color;
+        color = Color.BLACK;
+    }
+
+    public Cat(Double weight) {
+        this.weight = weight;
+        originWeight = weight;
+        weightFood = 0;
+        countCat = countCat + 1;
+        isLive = true;
+        color = Color.WHITE;
     }
 
     public void meow() {
