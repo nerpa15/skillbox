@@ -1,22 +1,23 @@
 public class Cat {
     private static int countCat = 0;
+    private static final double MIN_WEIGHT = 1000.0;
+    private static final double MAX_WEIGHT = 9000.0;
+    private static final int COUNT_EYE = 4;
     private double originWeight;
     private double weight;
-
-    private double minWeight;
-    private double maxWeight;
     private double weightFood;
     private boolean isLive;
+    private Color color;
 
 
-    public Cat() {
+
+    public Cat(Color color) {
         weight = 1500.0 + 3000.0 * Math.random();
         originWeight = weight;
-        minWeight = 1000.0;
-        maxWeight = 9000.0;
         weightFood = 0;
         countCat = countCat + 1;
         isLive = true;
+        this.color = color;
     }
 
     public void meow() {
@@ -70,7 +71,7 @@ public class Cat {
     }
 
     public boolean getIsLive() {
-        if (isLive && ((weight < minWeight) || (weight > maxWeight))) {
+        if (isLive && ((weight < MIN_WEIGHT) || (weight > MAX_WEIGHT))) {
             isLive = false;
             countCat = countCat - 1;
         }
@@ -92,7 +93,9 @@ public class Cat {
     public void print() {
         System.out.println("Cat{" +
                 "originWeight=" + originWeight +
-                ", weight=" + weight + '}');
+                ", weight=" + weight +
+                ", color=" + color.toString() +
+                '}');
         System.out.println("Всего кошек " + getCountCat());
     }
 
